@@ -3,18 +3,6 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faPlay, faPause, faAngleLeft, faAngleRight} from '@fortawesome/free-solid-svg-icons';
 
 const Player = ({audioRef, currentSong, isPlaying, setIsPlaying, songInfo, setSongInfo, songs, setSongs, setCurrentSong}) => {
-    //  // useEffect(() => {
-    //  //   const newSongs = songs.map((song) => {
-    //  //       if(song.id === currentSong.id) {
-    //  //           return {...song, active: true}
-    //  //       } else {
-    //  //           return {...song, active: false}
-    //  //        }
-    //  //   });
-    //  //   setSongs(newSongs);
-    //  // },[currentSong]);
-    // // it will run everytime our currentSong gets updated
-
     const activeLibraryHandler = (nextPrev) => {
         const newSongs = songs.map((song) => {
             if(song.id === nextPrev.id) {
@@ -49,20 +37,8 @@ const Player = ({audioRef, currentSong, isPlaying, setIsPlaying, songInfo, setSo
         let currentIndex = songs.findIndex((song) => song.id === currentSong.id);
         if(direction === 'skip-forward') {
            await setCurrentSong(songs[(currentIndex + 1) % songs.length]);
-            // the current index keeps growing but when it matches songs.length, it goes back to 0
             activeLibraryHandler(songs[(currentIndex + 1) % songs.length]);
         }
-        // if(direction === 'skip-back'){
-        //     if((currentIndex - 1) % songs.length === -1){
-        //         // if index = -1 then setCurrentSong to the last one
-        //         setCurrentSong(songs[songs.length -1]);
-        //         return;
-        //         // we're adding "return" here because if we don't, the next line is gonna run and crash the app
-        //         // but it's the same thing as an if else statement (see below)
-        //     }
-        //     setCurrentSong(songs[(currentIndex - 1 % songs.length)]);
-        //     // this only applies to songs in the middle of the list, not first, nor last position
-        // }
         if(direction === 'skip-back'){
             if((currentIndex - 1) % songs.length === -1){
                 await setCurrentSong(songs[songs.length -1]);

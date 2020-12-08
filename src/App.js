@@ -76,16 +76,3 @@ function App() {
 };
 
 export default App;
-
-
-// apart from props and state, I could pass down to a child component also setState
-// ex: in the component's attributes(?) "setName={setName}" that's all
-
-
-// delete tweet function example
-// const Tweet = ({ tweet, tweets, setTweets }) => {
-// 	const deleteTweet = () => {
-// 		setTweets(tweets.filter((t) => t !== tweet));
-// 	}
-// 	return <button onClick={deleteTweet}>Delete</button>
-// }
